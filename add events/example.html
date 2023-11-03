@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Update</title>
+      <link rel="stylesheet" href="styles.css" />
+    </head>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 id="title" class="text-center">UPDATE EVENTS</h1>
+        <!-- <p id="description" class="description text-center">
+          Thank you for taking the time to help us improve the platform
+        </p> -->
+      </header>
+      <form id="update-form">
+        <div class="form-group">
+          <label id="name-label" for="name">New Event Name</label>
+          <input
+            type="text"
+            name="name"
+            id="newName"
+            class="form-control"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label id="description" for="description"
+            >New Event Description</label
+          >
+          <input
+            type="text"
+            name="description"
+            id="newDescription"
+            class="form-control"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label id="venue" for="venue">New Venue</label>
+          <input
+            type="text"
+            name="venue"
+            id="newVenue"
+            class="form-control"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label id="date-label" for="date">Change Date</label>
+          <input
+            type="date"
+            name="date"
+            id="newDate"
+            class="form-control"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label id="time-label" for="time">Change Time</label>
+          <input
+            type="text"
+            name="email"
+            id="newTime"
+            class="form-control"
+            required=""
+          />
+        </div>
+
+        <div class="form-group">
+          <button type="button" id="update" class="submit-button">
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script type="module">
+      // Initialize Firebase
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        get,
+      } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBqR7z2xgkSysRQf7rxIbkMo6LVPngFLSI",
+        authDomain: "campus2-cb1c2.firebaseapp.com",
+        databaseURL: "https://campus2-cb1c2-default-rtdb.firebaseio.com",
+        projectId: "campus2-cb1c2",
+        storageBucket: "campus2-cb1c2.appspot.com",
+        messagingSenderId: "77436462606",
+        appId: "1:77436462606:web:3acdf3f9c191d87ff5fe5f",
+        measurementId: "G-XTVEBC5XCN",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+      const auth = getAuth();
+      let currentUser;
+      const queryParams = new URLSearchParams(window.location.search);
+      const eventKey = queryParams.get("eventKey");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          currentUser = user;
+          // Get the eventKey from the query parameter
+          const queryParams = new URLSearchParams(window.location.search);
+          const eventKey = queryParams.get("eventKey");
+
+          // Function to get event details using the eventKey
+          function getEventDetails(eventKey) {
+            const eventRef = ref(
+              db,
+              "events/" + currentUser.uid + "/" + eventKey
+            );
+            return get(eventRef);
+          }
+
+          // Populate the form with existing event details
+          getEventDetails(eventKey)
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                const event = snapshot.val();
+                // Display existing values as placeholders
+                document.getElementById(
+                  "newName"
+                ).placeholder = `Current Event Name: ${event.name}`;
+                document.getElementById(
+                  "newDescription"
+                ).placeholder = `Current Event Description: ${event.description}`;
+                document.getElementById(
+                  "newVenue"
+                ).placeholder = `Current Venue: ${event.venue}`;
+                document.getElementById(
+                  "newDate"
+                ).placeholder = `Current Date: ${event.Date}`;
+                document.getElementById(
+                  "newTime"
+                ).placeholder = `Current Time: ${event.time}`;
+              } else {
+                alert("Event not found.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error getting event details:", error);
+            });
+        }
+      });
+
+      // Function to handle updating an event
+      document.getElementById("update").addEventListener("click", function () {
+        const newEventName = document.getElementById("newName").value;
+        const newEventDescription = document.getElementById("newDescription").value;
+        const newEventVenue = document.getElementById("newVenue").value;
+        const newEventDate = document.getElementById("newDate").value;
+        const newEventTime = document.getElementById("newTime").value;
+
+        // Update the event details
+        const eventRef = ref(db, "events/" + currentUser.uid + "/" + eventKey);
+        set(
+          eventRef,
+          {
+            name: newEventName,
+            description: newEventDescription,
+            venue: newEventVenue,
+            Date: newEventDate,
+            time: newEventTime,
+          },
+          { merge: true }
+        )
+          .then(() => {
+            alert("Event Updated!");
+          })
+          .catch((error) => {
+            console.error("Error updating event:", error);
+          });
+      });
+    </script>
+  </body>
+</html>

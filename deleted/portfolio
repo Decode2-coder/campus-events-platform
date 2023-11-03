@@ -1,0 +1,144 @@
+<section id="portfolio" class="portfolio">
+      <div class="container">
+        <div class="section-title">
+          <h2>Boards</h2>
+          <!-- <h3>Check your <span>Interests</span></h3> -->
+          <!-- <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p> -->
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">ACAC</li>
+              <!-- <li data-filter=".filter-card">Card</li> -->
+              <li data-filter=".filter-web">SAC</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="Beige Minimalist Simple Initial Logo.png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Academic Interaction</h4>
+              <p>BAI</p>
+              <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="https://iitj.ac.in/students/acac/index.php?id=bcca" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="Beige Minimalist Simple Initial Logo (1).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Hostel Affairs</h4>
+              <p>BHA</p>
+              <a href="iittt.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="Beige Minimalist Simple Initial Logo (2).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Art and Culture</h4>
+              <p>BAC</p>
+              <a href="iittt.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="Beige Minimalist Simple Initial Logo (3).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Literary Affairs</h4>
+              <p>BLA</p>
+              <a href="iittt.png" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="Beige Minimalist Simple Initial Logo (4).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Co-Curricular Affairs</h4>
+              <p>BCCA</p>
+              <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+              <a href="https://iitj.ac.in/students/acac/index.php?id=bcca" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="Beige Minimalist Simple Initial Logo (5).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Student Sports</h4>
+              <p>BSS</p>
+              <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="Beige Minimalist Simple Initial Logo (6).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Innovation and Entrepreneurship
+              </h4>
+              <p>BIE</p>
+              <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="https://iitj.ac.in/students/acac/index.php?id=bie" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="Beige Minimalist Simple Initial Logo (7).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Departmental Society
+              </h4>
+              <p>BDS</p>
+              <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="https://iitj.ac.in/students/acac/index.php?id=bds" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          
+          </div> 
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="Beige Minimalist Simple Initial Logo (8).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Career Development
+              </h4>
+              <p>BCD</p>
+              <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="https://iitj.ac.in/students/acac/index.php?id=bcd" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="Beige Minimalist Simple Initial Logo (9).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Society for Alumni Affairs
+              </h4>
+              <p> SAA</p>
+              <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="https://iitj.ac.in/students/acac/index.php?id=saa" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="Beige Minimalist Simple Initial Logo (10).png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Board of Student Welfare</h4>
+              <p>BSW</p>
+              <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          
+
+        </div>
+
+      </div>
+    </section>

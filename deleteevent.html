@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Results</title>
+
+    <style>
+        .inputbox {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    
+        .form {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        #events-list {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+    
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    
+        #events-list {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="inputbox">
+        <div class="form">
+            <div id="events-list">
+                
+                <!-- This section will display the events -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Initialize Firebase (Note: This uses the latest version of Firebase)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+        import { getDatabase, ref, set, remove, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqR7z2xgkSysRQf7rxIbkMo6LVPngFLSI",
+            authDomain: "campus2-cb1c2.firebaseapp.com",
+            databaseURL: "https://campus2-cb1c2-default-rtdb.firebaseio.com",
+            projectId: "campus2-cb1c2",
+            storageBucket: "campus2-cb1c2.appspot.com",
+            messagingSenderId: "77436462606",
+            appId: "1:77436462606:web:3acdf3f9c191d87ff5fe5f",
+            measurementId: "G-XTVEBC5XCN"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth();
+        let currentUser;
+
+        // Function to display events
+        function displayEvents() {
+            const eventsList = document.getElementById('events-list');
+            eventsList.innerHTML = ''; // Clear the previous events
+
+            if (currentUser) {
+                // Create a reference to the events
+                const eventsRef = ref(db, 'events/' + currentUser.uid);
+
+                // Listen for changes to the events
+                onValue(eventsRef, (snapshot) => {
+                    const events = snapshot.val();
+                    for (const key in events) {
+                        if (events.hasOwnProperty(key)) {
+                            const event = events[key];
+                            const eventElement = document.createElement('div');
+                            eventElement.innerHTML = `
+                                <p><strong>Name of event:</strong> ${event.name}</p>
+                                <p><strong>About event:</strong> ${event.description}</p>
+                                <p><strong>Venue for the event:</strong> ${event.venue}</p>
+                                <p><strong>Date:</strong> ${event.Date}</p>
+                                <p><strong>Time:</strong> ${event.time}</p>
+                                <button class="delete-button" data-key="${key}">Delete</button>
+                                <button class="update-button" data-key="${key}">Update</button>
+                                <p>_____________________________________</p>
+                            `;
+                            eventsList.appendChild(eventElement);
+                        }
+                    }
+
+                    // Add event listeners to the Delete and Update buttons
+                    const deleteButtons = document.querySelectorAll('.delete-button');
+                    deleteButtons.forEach((button) => {
+                        button.addEventListener('click', deleteEvent);
+                    });
+
+                    const updateButtons = document.querySelectorAll('.update-button');
+                    updateButtons.forEach((button) => {
+                        button.addEventListener('click', updateEvent);
+                    });
+                });
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                console.log(currentUser.email + " has logged in");
+                displayEvents(); // Display events when the user is logged in
+            } else {
+                currentUser = null;
+            }
+        });
+
+        // Function to delete an event
+        function deleteEvent(event) {
+            if (currentUser) {
+                const eventKey = event.target.getAttribute('data-key');
+                const eventRef = ref(db, 'events/' + currentUser.uid + '/' + eventKey);
+
+                // Check if the event exists before attempting to delete
+                get(eventRef)
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            remove(eventRef)
+                                .then(() => {
+                                    alert('Event Deleted!');
+                                    displayEvents(); // Refresh the displayed events
+                                })
+                                .catch((error) => {
+                                    console.error("Error deleting event:", error);
+                                });
+                        } else {
+                            alert('Event not found.');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error checking event existence:", error);
+                    });
+            } else {
+                alert('You are not authorized to delete events.');
+            }
+        }
+
+        // Function to handle updating an event
+        function updateEvent(event) {
+            const eventKey = event.target.getAttribute('data-key');
+            // Redirect to the updateEvent.html page with the event key as a query parameter
+            window.location.href = `updateEvent.html?eventKey=${eventKey}`;
+        }
+    </script>
+</body>
+</html>

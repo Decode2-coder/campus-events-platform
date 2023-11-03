@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="profile.css">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h3>Welcome to VIT</h3>
+		<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Curabitur et est sed felis aliquet sollicitudin</p> -->
+
+        <span>
+			<!-- <p>login with email</p>
+			<a href="#"><i class="fa fa-google" aria-hidden="true"></i></a> -->
+		</span>
+		</div>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+	</div>
+	
+	
+		<div class="right">
+			<div class="user-info" style="display:none;">
+				<p id="user-info"></p>
+			</div>		  
+		<h5>Login</h5>
+		<p>Don't have an account? <a href="newsignup.html">Creat Your Account</a> it takes less than a minute</p>
+		<div class="inputs">
+			<input type="text" placeholder="user name">
+			<br>
+			<input type="password" placeholder="password">
+		</div>
+			
+			<br><br>
+			
+		<!-- <div class="remember-me--forget-password">
+				
+			<p>forget password?</p>
+		</div>
+			 -->
+       <br>
+       <button id="login">Login</div></button>
+   </div>
+</div>
+
+
+<script type="module">
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
+    import {
+      getDatabase,
+      ref,
+      update,
+    } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js";
+    //   import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBqR7z2xgkSysRQf7rxIbkMo6LVPngFLSI",
+      authDomain: "campus2-cb1c2.firebaseapp.com",
+      databaseURL: "https://campus2-cb1c2-default-rtdb.firebaseio.com",
+      projectId: "campus2-cb1c2",
+      storageBucket: "campus2-cb1c2.appspot.com",
+      messagingSenderId: "77436462606",
+      appId: "1:77436462606:web:3acdf3f9c191d87ff5fe5f",
+      measurementId: "G-XTVEBC5XCN",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    let currentUser;
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        var email = user.email;
+        currentUser = user;
+        console.log(currentUser.email + " has logged in");
+        const uid = user.uid;
+        
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+
+    document.getElementById("login").addEventListener('click', function(e) {
+      alert('User Logged In');
+      window.location.href = "userlogin.html";
+    })
+    
+
+
+</script>
+  
+</body>
+
+</html>
